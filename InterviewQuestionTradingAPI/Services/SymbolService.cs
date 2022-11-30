@@ -2,6 +2,7 @@
 using MockTradingApi;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace InterviewQuestionTradingAPI.Services
 {
@@ -16,7 +17,7 @@ namespace InterviewQuestionTradingAPI.Services
             _tradingApi = tradingApi;
         }
 
-        public IEnumerable<Symbol> GetSymbols()
+        public IEnumerable<Symbol> GetAllSymbols()
         {
             return _tradingApi.GetSymbols();
         }
