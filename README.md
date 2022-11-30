@@ -1,6 +1,6 @@
 # Interview
 ## Welcome
-Thanks for cloning this project. This project is mean for conducting a technical interview for C# developers.  
+Thanks for cloning this project. This project is meant for conducting a technical interview for C# developers.  
 Good luck 🤞 
 
 ### How to submit
@@ -9,15 +9,8 @@ There are a few ways you can submit your answers:
 2. Just post your forked project link to HR.
 
 ## Backgrounds
-
-### Pricing
-
-You are provided a .net standard library that mock a pricing system.
-The api simulated getting prices from external services.  
-See the diagram below:  
-![](diagram1.png)
-
-The library has a class named “TradingApi” which implement interface:
+You are provided a .net standard library that mocks a trading system.
+The library has a class named “TradingApi” which implements the following interface:
 ``` c#
 public interface ITradingApi
 {
@@ -38,7 +31,7 @@ public class Symbol
 ```
 
 ## Tasks
-You tasks are to complete these **controllers and services** to full fill the following requirements. The controllers and services are already created created, 
+You tasks are to complete these **controllers and services** to full fill the following requirements. The controllers and services are already created
 
 ### Symbol API
 1.	GET /api/symbols
