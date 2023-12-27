@@ -14,18 +14,32 @@ namespace InterviewQuestionTradingAPI.Controllers
     public class SymbolsController : ControllerBase
     {
         private readonly ILogger<SymbolsController> _logger;
-        private readonly SymbolService _services;
+        private readonly PriceServices _services;
 
-        public SymbolsController(ILogger<SymbolsController> logger, SymbolService services)
+        public SymbolsController(ILogger<SymbolsController> logger, PriceServices services)
         {
             _logger = logger;
             _services = services;
         }
 
+
+        //TODO
+        //1.	GET /api/symbols
+        //•	Return a list of all symbols
         [HttpGet]
         public IEnumerable<Symbol> Get()
         {
             throw new NotImplementedException();
         }
+
+
+        //TODO
+        //2.	GET /api/symbols/{name}
+        //•	Return a single Symbol object with the {name }
+
+
+
+
+
     }
 }

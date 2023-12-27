@@ -30,8 +30,8 @@ namespace InterviewQuestionTradingAPI
         {
             //inject the trading api for data source
             services.AddSingleton<ITradingApi, TradingApi>();
-            services.AddSingleton<SymbolService>();
-
+            services.AddSingleton<PriceServices>();
+            services.AddTransient<SymbolService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

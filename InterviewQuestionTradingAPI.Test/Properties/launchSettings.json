@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "InterviewQuestionTradingAPI.Test": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:49434;http://localhost:49435"
+    }
+  }
+}

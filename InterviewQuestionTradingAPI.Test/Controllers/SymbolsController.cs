@@ -10,7 +10,6 @@ namespace InterviewQuestionTradingAPI.Test.Controllers
         [SetUp]
         public void Setup()
         {
-
         }
 
         [Test]
