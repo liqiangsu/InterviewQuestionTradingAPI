@@ -105,7 +105,8 @@ Console.WriteLine($"Rounded: {roundedTime}");
 ```
 
 **Example Output:**
-```
+
+```console
 Original: 2025-01-23 15:12:45
 Rounded: 2025-01-23 15:12:00
 ```
@@ -141,6 +142,7 @@ Your task is to complete the **controllers and services** to fulfill the followi
 ---
 
 ## Additional Notes
+
 - You have full control over the project but **do not modify the provided mock service or its interface.**
 - The mocked service provides live data when the project is built and run. **The data updates every second, simulating real-time market conditions.**
 - Focus on code quality, performance, functionality, and solution design.
