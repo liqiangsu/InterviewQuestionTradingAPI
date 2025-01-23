@@ -23,7 +23,8 @@ namespace InterviewQuestionTradingAPI.Services
             }
         }
 
-        private void TradingApi_OnPricing(object sender, Price e)
+        //callback handler for incoming prices
+        private void TradingApi_OnPricing(object sender, Price incomingPrice)
         {
             //for each price tick, this method will be invoked
             throw new NotImplementedException();
