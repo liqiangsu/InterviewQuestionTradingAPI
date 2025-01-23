@@ -7,11 +7,11 @@ using MockTradingApi;
 
 namespace InterviewQuestionTradingAPI.Services
 {
-    public class PriceServices
+    public class PriceService
     {
         private readonly ITradingApi _tradingApi;
 
-        public PriceServices(ITradingApi tradingApi)
+        public PriceService(ITradingApi tradingApi)
         {
             _tradingApi = tradingApi;
             _tradingApi.OnPricing += TradingApi_OnPricing;
@@ -23,13 +23,9 @@ namespace InterviewQuestionTradingAPI.Services
             }
         }
 
-        /// <summary>
-        /// for each price recieved, this method will be invoked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="price"></param>
-        private void TradingApi_OnPricing(object sender, Price price)
+        private void TradingApi_OnPricing(object sender, Price e)
         {
+            //for each price tick, this method will be invoked
             throw new NotImplementedException();
         }
     }

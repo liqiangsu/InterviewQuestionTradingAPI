@@ -1,45 +1,62 @@
 # Interview
+
 ## Welcome
-Thanks for cloning this project. This project is mean for conducting a technical interview for C# developers.  
-Good luck 🤞 
 
-### How to submit
-There are a few ways you can submit your answers:
-1. Zip and send the code back to the contacting HR.
-2. Just post your forked project link to HR.
+Thank you for cloning this project! This project is designed to conduct a technical interview for C# developers. Good luck! 🤞
 
-## Backgrounds
+### How to Submit
 
-### Pricing
+You can submit your answers using one of the following methods:
 
-You are **provided** （you dont need to implement） a .net standard library that mock a pricing system.
-The api simulated getting prices from external services.  
-See the diagram below:  
-![](diagram1.png)
+1. Zip and send the code back to the HR contact.
+2. Share the link to your forked project with HR.
 
-The library has a class named “TradingApi” which implement interface:
-``` c#
+---
+
+## Background
+
+### Pricing System Overview
+
+You are **provided** (no need to implement) a .NET Standard library that simulates a pricing system. The API mimics receiving prices from external services.
+
+Here is a high-level diagram:
+
+```mermaid
+graph LR
+    subgraph Current Application
+        B[Trading API] -->|Event callback| C["Event handler - OnPricing()"]
+    end
+    A[External System] -->|Price streams| B
+```
+
+The library includes a class named `TradingApi` which implements the following interface:
+
+```csharp
 public interface ITradingApi
 {
     /// <summary>
-    /// Get full list of symbol definitions, only two symbols are supported: “AUDUSD” and “CL-OIL”.
+    /// Get the full list of symbol definitions. Only two symbols are supported: "AUDUSD" and "CL-OIL".
     /// </summary>
     /// <returns>Symbols</returns>
     IEnumerable<Symbol> GetSymbols();
 
     /// <summary>
-    /// If there is an in-coming price and the symbol of the price is subscribed by SubscribeSymbol <see cref="SubscribeSymbol"/> an event will fire, the pricing data is passed as event data.
+    /// If there is an incoming price and the symbol of the price is subscribed by SubscribeSymbol, 
+    /// an event will fire, passing the pricing data as event data.
     /// </summary>
     event EventHandler<Price> OnPricing;
 
     /// <summary>
-    /// Subscribe a symbol to receive prices though OnPricing event handler
+    /// Subscribe to a symbol to receive prices through the OnPricing event handler.
     /// </summary>
-    /// <param name="symbolName">name of a symbol</param>
+    /// <param name="symbolName">Name of a symbol</param>
     void SubscribeSymbol(string symbolName);
 }
 ```
-``` c#
+
+### Supporting Data Structures
+
+```csharp
 public struct Price
 {
     public string Symbol { get; }
@@ -64,22 +81,70 @@ public class PriceStats
 }
 ```
 
+### Extension Method for Time Rounding
+
+You can use the following extension method to round down a `DateTime` to a specific interval:
+
+```csharp
+public static DateTime RoundDown(this DateTime dateTime, TimeSpan interval)
+{
+    var delta = dateTime.Ticks % interval.Ticks;
+    return new DateTime(dateTime.Ticks - delta, dateTime.Kind);
+}
+```
+
+**Example Usage:**
+
+```csharp
+DateTime now = DateTime.UtcNow;
+TimeSpan interval = TimeSpan.FromMinutes(1);
+DateTime roundedTime = now.RoundDown(interval);
+
+Console.WriteLine($"Original: {now}");
+Console.WriteLine($"Rounded: {roundedTime}");
+```
+
+**Example Output:**
+```
+Original: 2025-01-23 15:12:45
+Rounded: 2025-01-23 15:12:00
+```
+
+Use this method to group prices into minute intervals for calculating the `PriceStats`.
+
+---
+
 ## Tasks
-You tasks are to complete these **controllers and services** to full fill the following requirements. The controllers and services are already created created, 
 
-1.	GET /api/symbols
-•	Return a list of all symbols
+Your task is to complete the **controllers and services** to fulfill the following requirements. The skeleton for the controllers and services is already provided in the project.
 
-2.	GET /api/symbols/{name}
-•	Return a single Symbol object with the {name}
+### API Endpoints
 
-3.	GET /api/price/{symbol}
-•	Return the latest Price of a {symbol}
+1. **GET /api/symbols**  
+   - Return a list of all available symbols.
 
-4.	Get /api/price/{symbol}/stats
-•	Return the PriceStats that contains Open, Close, Min and Max, for the current Minute, for a given symbol. (hint) An extension method could help you with the time  
+2. **GET /api/symbols/{name}**  
+   - Return a single `Symbol` object corresponding to the specified `{name}`.
 
-    a.  Open - The first Bid price in the minute  
-    b.	Close – the last Bid price in the minute  
-    c.	Min – the lowest Bid price in the minute  
-    d.	Max – the highest Bid price in the minute     
+3. **GET /api/price/{symbol}**  
+   - Return the latest `Price` for the specified `{symbol}`.
+
+4. **GET /api/price/{symbol}/stats**  
+   - Return `PriceStats` containing the following details for the **current minute** (i.e., from the start of the current minute to now) for the specified `{symbol}`:
+     - **Open**: The first `Bid` price in the minute.
+     - **Close**: The last `Bid` price in the minute.
+     - **Low**: The lowest `Bid` price in the minute.
+     - **High**: The highest `Bid` price in the minute.
+
+   **Hint:** Use the extension method above to round timestamps to the nearest minute and filter prices.
+
+---
+
+## Additional Notes
+- You have full control over the project but **do not modify the provided mock service or its interface.**
+- The mocked service provides live data when the project is built and run. **The data updates every second, simulating real-time market conditions.**
+- Focus on code quality, performance, functionality, and solution design.
+- The primary focus will be on your thought process and how you arrive at solutions.
+- The estimated time to complete the tasks is **1 hour**.
+
+Good luck! 🚀

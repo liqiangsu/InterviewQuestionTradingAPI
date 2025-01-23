@@ -9,7 +9,7 @@ namespace InterviewQuestionTradingAPI
     {
         public decimal Open { get; set; }
         public decimal Close { get; set; }
-        public decimal Min { get; set; }
-        public decimal Max { get; set; }
+        public decimal Low { get; set; }
+        public decimal High { get; set; }
     }
 }

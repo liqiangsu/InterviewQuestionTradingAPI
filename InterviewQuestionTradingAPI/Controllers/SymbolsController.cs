@@ -14,9 +14,9 @@ namespace InterviewQuestionTradingAPI.Controllers
     public class SymbolsController : ControllerBase
     {
         private readonly ILogger<SymbolsController> _logger;
-        private readonly PriceServices _services;
+        private readonly SymbolService _services;
 
-        public SymbolsController(ILogger<SymbolsController> logger, PriceServices services)
+        public SymbolsController(ILogger<SymbolsController> logger, SymbolService services)
         {
             _logger = logger;
             _services = services;
